@@ -77,7 +77,7 @@ frappe.pages['exacuer-lead-ai'].on_page_load = function (wrapper) {
           <!-- RIGHT PANEL -->
           <div class="col-md-6">
               <div id="lead-output" class="card p-3 shadow-sm">
-                <h4 class="mb-3" id="lead-title">📇 AI Lead Extractor – Parsed Lead Details</h4>
+                <h4 class="mb-3" id="lead-title">📇 Exacuer Lead AI – Parsed Lead Details</h4>
                 <table class="table table-borderless align-middle mb-3">
                   <tbody>
                     <tr>
@@ -266,9 +266,14 @@ function sendToAI(ocrText) {
                 $("#lead_city").val(d.city||"");
                 $("#cleaned_ocr").val(d.raw_text||"");
 
-                // ✅ Always show static AI Lead header (no names appended)
+                // Dynamic heading with name
                 let title = document.getElementById("lead-title");
-                title.textContent = "📇 AI Lead Extractor – Parsed Lead Details";
+                let fullName = [d.first_name, d.last_name].filter(Boolean).join(" ");
+                if (fullName) {
+                    title.textContent = `📇 Exacuer Lead AI – Parsed Lead Details for ${fullName}`;
+                } else {
+                    title.textContent = "📇 Exacuer Lead AI – Parsed Lead Details";
+                }
 
                 // Try to select AI-suggested source
                 if (d.source) {

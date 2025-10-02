@@ -1,0 +1,56 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-10-02 23:45:07.628137",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "openrouter_api_key",
+  "default_model",
+  "enable_ai_parsing"
+ ],
+ "fields": [
+  {
+   "fieldname": "openrouter_api_key",
+   "fieldtype": "Data",
+   "label": "OpenRouter API Key"
+  },
+  {
+   "default": "openai/gpt-4.1-mini",
+   "fieldname": "default_model",
+   "fieldtype": "Data",
+   "label": "Default Model"
+  },
+  {
+   "default": "1",
+   "fieldname": "enable_ai_parsing",
+   "fieldtype": "Check",
+   "label": "Enable AI Parsing"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2025-10-02 23:49:40.442370",
+ "modified_by": "Administrator",
+ "module": "Exacuer CRM",
+ "name": "Exacuer Lead AI Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

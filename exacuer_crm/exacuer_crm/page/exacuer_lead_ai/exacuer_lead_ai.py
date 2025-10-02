@@ -4,20 +4,39 @@ import json
 import base64
 import os
 
-# 🔑 OpenRouter API Key (⚠️ for production, move to site_config.json)
-OPENROUTER_API_KEY = "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"
+
+# ----------------- SETTINGS FETCHER -----------------
+def get_ai_settings():
+    """Fetch AI settings from Exacuer Lead AI Settings (single doctype)."""
+    settings = frappe.get_single("Exacuer Lead AI Settings")
+    return {
+        "api_key": settings.openrouter_api_key,
+        "default_model": settings.default_model or "openai/gpt-4.1-mini",
+        "enabled": bool(settings.enable_ai_parsing)
+    }
 
 
 # ----------------- AI PARSING -----------------
 @frappe.whitelist()
-def analyze_text(text, model: str = "openai/gpt-4.1-mini"):
+def analyze_text(text, model: str = None):
     """
     Accept raw OCR text and extract structured lead info using OpenRouter.
     Returns parsed JSON (first_name, last_name, etc.)
     """
 
+    settings = get_ai_settings()
+    api_key = settings["api_key"]
+
+    if not settings["enabled"]:
+        return {"error": "AI Parsing is disabled in settings."}
+
+    if not api_key:
+        return {"error": "Missing OpenRouter API Key. Please set it in Exacuer Lead AI Settings."}
+
+    model = model or settings["default_model"]
+
     headers = {
-        "Authorization": f"Bearer {OPENROUTER_API_KEY}",
+        "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json",
         "HTTP-Referer": frappe.utils.get_url(),
         "X-Title": "Exacuer Lead AI"
@@ -72,10 +91,12 @@ def analyze_text(text, model: str = "openai/gpt-4.1-mini"):
         try:
             return json.loads(content)
         except Exception:
-            return {"raw_text": content}
+            # ⚠️ If AI returned junk, show clear error message
+            return {"error": "AI returned invalid response", "raw_text": content}
 
     except Exception as e:
-        return {"error": str(e)}
+        # ⚠️ If AI service call fails, return structured error
+        return {"error": f"AI service failed: {str(e)}"}
 
 
 # ----------------- CREATE LEAD -----------------
