@@ -1,0 +1,69 @@
+/* ---------------- CRM Layout Styles ---------------- */
+
+.crm-flex-container {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.custom-form-layout {
+    flex: 1;
+    position: relative;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.crm-form-left {
+    flex: 1;
+    max-width: 65%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.crm-form-right {
+    flex: 1;
+    max-width: 35%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.crm-section {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.crm-section h4 {
+    margin: 0 0 8px 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: #444;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 4px;
+}
+
+/* 📱 Responsive Fix: On small screens stack columns vertically */
+@media (max-width: 991px) {
+    .crm-flex-container {
+        flex-direction: column;
+    }
+    .crm-form-left, 
+    .crm-form-right {
+        max-width: 100%;
+    }
+}
+
+/* 🌀 Scroll only Activities panel */
+#activities-panel .crm-section-body {
+    max-height: 350px;  /* adjust height as per your need */
+    overflow-y: auto;
+    padding-right: 6px;
+}
