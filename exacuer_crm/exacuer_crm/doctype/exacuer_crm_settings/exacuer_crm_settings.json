@@ -1,0 +1,53 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-10-06 21:59:55.275565",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "enable_user_based_crm_restrictions",
+  "allow_user_based_crm_full_access"
+ ],
+ "fields": [
+  {
+   "default": "0",
+   "fieldname": "enable_user_based_crm_restrictions",
+   "fieldtype": "Check",
+   "label": "Enable User-Based CRM Restrictions"
+  },
+  {
+   "depends_on": "enable_user_based_crm_restrictions",
+   "description": "Select this option only if you want to give full CRM access; ignore it to keep user-based restrictions.",
+   "fieldname": "allow_user_based_crm_full_access",
+   "fieldtype": "Table MultiSelect",
+   "label": "Allow User-Based CRM Full Access",
+   "options": "Exacuer CRM User"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2025-10-06 22:53:52.681791",
+ "modified_by": "Administrator",
+ "module": "Exacuer CRM",
+ "name": "Exacuer CRM Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

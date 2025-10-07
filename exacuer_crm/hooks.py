@@ -242,3 +242,52 @@ app_license = "mit"
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
 
+
+# ----------------------------------------------
+# JS and CSS Includes
+# ----------------------------------------------
+
+# JS files linked to specific doctypes
+doctype_js = {
+    "Lead": [
+        "public/js/crm_layout.js",
+        "public/js/crm_progress.js",
+        "public/js/crm_todo.js",
+        "public/js/lead.js"
+    ],
+    "Opportunity": [
+        "public/js/crm_layout.js",
+        "public/js/crm_progress.js",
+        "public/js/crm_todo.js",
+        "public/js/opportunity.js"
+    ]
+}
+
+# JS files to be included globally
+app_include_js = [
+    "/assets/exacuer_crm/js/crm_layout.js",
+    "/assets/exacuer_crm/js/crm_todo.js"
+]
+
+# CSS files to be included globally
+app_include_css = [
+    "/assets/exacuer_crm/css/crm_layout.css",
+    "/assets/exacuer_crm/css/crm_todo.css"
+]
+
+
+# ----------------------------------------------
+# Permissions
+# ----------------------------------------------
+
+permission_query_conditions = {
+    "Lead": "exacuer_crm.permissions.crm_permission.get_permission_query_conditions",
+    "Opportunity": "exacuer_crm.permissions.crm_permission.get_permission_query_conditions",
+}
+
+has_permission = {
+    "Lead": "exacuer_crm.permissions.crm_permission.has_permission",
+    "Opportunity": "exacuer_crm.permissions.crm_permission.has_permission",
+}
+
+
